@@ -1,0 +1,1015 @@
+rotfez-5mucma-tepCic
+
+Life to date:
+	• Manager Hierarchy updates
+		○ Change manager 
+		○ Change users under a manager
+			§ Team alignment
+	• User Hierarchy updates
+		○ Change users name or manager
+		○ Make them non-active/active
+		○ Update effective dates
+		○ Changed user's category
+	• Backfill changes
+	• Create ETL mapping and Workflows
+	• Updated dashboard views
+	• AO 7/20/22 -Understand how salesforce is connected to our data
+	• Automation of hierarchy updates - emphasis on automatic
+	• Dental Extracts
+	• Add Dental Data to call volume and Top 5 request category
+		○ Backfill dental data for testing on dashboards
+	• National Accounts dashboard: 
+		○ Check Backend for missing data
+		○ Check front end for missing data
+	• PG Monthly Refresh
+	• AWS certified
+	• Publishing tableau workbooks (move ups): Jim Hall will teach process (8/5/22)
+	
+	• Data Engineer (EOA & DOA Partnership) at Cigna (4/2023)
+	•  (Digital connections -> The Cloud Partnership) at Cigna
+		○ Python programming
+		○ SQL Development-Oracle, sql server
+		○ ETL informatica
+		○ SSIS
+		○ Data bricks
+		○ Active batch
+		○ Version control - Github
+		
+Hi Anthony - Not sure If you heard from Dan Yuill or my manager Tami about my role but I would like to discuss with you any potential next steps afterwards or tomorrow morning.
+
+Anthony:
+	--609-705-4123
+	
+	
+
+Hi Anthony - Not sure If you heard from Dan Yuill or my manager Tami about my role but I would like to discuss with you any potential next steps afterwards or tomorrow morning.
+
+Hi Anthony - Not sure If you heard from Dan Yuill or my manager Tami about my role but I would like to discuss with you any potential next steps after or tomorrow morning.
+
+Skills to add to resume: similar to software engineering advisor
+	-Oracle
+	-AWS
+	-Git
+	-Jenkins
+	-Kafka
+	-Databricks
+	-python
+	-active batch
+	-Deployment process for production & lower environments deployment
+	
+	
+
+	
+
+Data & Analytics Engineering & Enterprise Operations Analytics Partnership
+
+Tableau || Cognos || Informatica || Data Analytics|| AWS Solution
+Data & Analytics Engineering
+
+
+1/26/23
+--backend/EDW: get to the data
+--bi tool - be able to pull and consume the data
+--visualize the data
+
+1. 8/24 Anthony
+	Meet w/ Anthony:
+	
+-I am looking into a python training course that was offered last year…
+	-Next steps would be EDP work…
+	-Spark is similar to Pandas…
+	-play around in EDP and reviewing the videos
+	
+	-it would be helpful to get knowledge in how to work in EDP…
+	
+	
+	
+	Next steps would be EDP work…
+	-Spark is similar to Pandas…
+	-play around in EDP and reviewing the videos
+	
+	-it would be helpful to get knowledge in how to work in EDP…
+
+
+-----------------------------------
+
+
+-Starting to understand what our goals are
+
+Focusing most of time on python & move files scripts
+	-did a few trainings
+	
+-consumer code will put all the files in your staging folder
+-final mover code will read it from the staging folder and move it to the final folder
+
+-we are going to then pull that and put it into the aeUSmed location 
+and the consumer is going to pick it up from the Kafka
+
+Move files & Consumer Code:
+	-Did a lot of analysis for our Move Files python scripts & config
+	-Do analysis of the consumer code to thoroughly understand how it works
+	-Do an analysis of the config file as well.
+	
+-Jproperties for properties file
+-pandas dataframe for the data frame structure
+	
+	Checkout - 
+	
+	T18 structure 
+	is simple:
+		-read properties file
+		-open the file location for the properties file: 
+		-after opening, then put it into data frame
+		-format it to particular format you want…which means column wise, you're going to format the data frame into column order that corresponds with DDL in EDW.
+		-Then connect to oracle & 
+		-write data out to oracle
+		-close connection to oracle
+		-archive the file
+
+-AWS developer or solutions engineer certification?
+
+Logger:
+	-Try catch for an oracle error
+	• -Logger.info for each function 
+	• -Handler in main function to 
+	• -Try catch oracle error >> logger.info, continue
+
+Tier 1, Kafka Consumer code: 
+1 part is actually consumer code, which takes the messages from the kafka queue and reads them and submits them as a file to the server that the consumer code is loaded up to
+
+Tier 2, File mover code-
+then there is a secondary layer of code that is read from the kafka consumer, and that what submits the files data to either the nas drive or the RDBMS
+
+T2 Kafka process diagram
+The Glue job file gets dropped into an s3 bucket. And the S3 bucket will be picked up by s3 connector which is pulling for the bucket to create a new topic?
+
+T229
+Then it would publish these messages to the kafka server, which is picked up by the kafka replicator: basically mirrors images from the AWS kafka server to the on prem kafka server
+
+Each message is associated with an off-set number- sequentially increasing number that's assigned to each of the messages internally by Kafka
+
+We have created a custom code to read the messages from on prem kafka server
+
+
+-Before: Worked a lot with Vipin and Asheesh and Roja
+
+-Python?
+-Databricks
+-Task out story
+
+We got started with our PI planning and outlining the epics and stories coming up
+-a lot are on data analysis and mapping
+
+The first priority for the Digital Data Engineering Team :will be the automating the Digital ID Dashboard (On-Prem). 
+
+In order to facilitate that development of this effort, our team needs to automate the transfer of source system data that is being used for the dashboard into EDW. 
+The four current source systems we are working with are 
+	• Access to Care, 
+	• One Source, 
+	• Book of Business (Vista) and 
+	• Digital Sessions. 
+
+Team Objectives:
+	During this PI we want to make Digital Sessions extract data available in both EDP and EDW for downstream consumption by the Digital ID Reporting dashboard in both On-Prem and the Cloud. We will break this process down into two steps:
+2. Develop automation to pull the data extract into our EDP structures to make it available on our teams cloud data layer for downstream consumption
+3. Develop automation to facilitate the data transfer from our EDP data layer down to the On-Prem EDW data tables.
+
+
+Part 1: Developing out the data layer
+T0 Looking to push all data into delta lake
+-under lying storage system for this data lake is S3
+T1 -data bricks technology -> makes use of apache spark
+	-With apache spark you can use couple of APIs: python, scala, java, sql
+
+We are going to be developing out the data bricks notebooks (aka ETL jobs)
+	Utilizing python tech, and also SQL API
+
+
+T9 what did we go over in stand up?
+Josh and Vipin - access to care data, and getting access to it
+-creating service id or pulling it somewhere we can use it..
+
+Analysis of Data sources for Digital ID dashboard
+
+Part of the project we are now:
+-Starting with the digital development for the client pillar
+-there is four data sets they are using to create a dashboard, which are scattered throughout various sub systems
+
+-T10 they are developing front end of dashboard off of mock data that is pulled in through EDW
+-we are working on creating a backend data layer for them
+-plan is to pull this data from various sources into a cloud software similar to databricks (environment)
+
+T11 we are looking to connect their front end dashboard directly to the cloud software environment, IF we can based on licensing
+---OR create an ETL process that would pull the summarized data from cloud down to EDW 
+---AND then connect the dashboard to EDW
+T1120 Four sources are: 
+	-ePRO
+	-access to care
+	-digital sessions
+	-some DB2 database, maybe one source?
+	
+
+
+
+
+4. 3/29 Quarter 2 Apr-June end 
+5. Dream (“Someday, I wish I….”)
+	i. Can be self-sufficient in almost everything data or business related in EOA and DOA
+	ii. Non work related - travel to places/climb mountains, paid for it
+	
+6. Things from the last few months you enjoyed working on?
+	i. AWS - Cloud technologies.  Learned about storage systems (s3 etc)
+	ii. DOA- goals:
+	Connect front end dashboards to cloud software environment, if possible
+		-or create an ETL Process that would pull the summarized data from cloud down to EDW
+		-and then connect the dashboard to EDW
+	
+	iii. Oracle/SQL - Got introduced to our databases and tables
+	iv. Python
+	v. Maybe: ETL Tasks and diagnose data issues 
+	
+7. Things you did not enjoy working on?
+	i. Testing - But need it
+	ii. Access requests-will be starting this soon
+
+8. What do we need to improve organizationally that you believe you can influence? How could you influence that? 
+	i. Organization and documentation
+	ii. Testing
+	iii. Clear requirements
+	
+Where are you going to focus your time?  What’s the big thing(s) to hit before next check-in? 
+	i. Continue to work on ETL/data bricks/python
+		1. SSIS and informatica
+	ii. DOA
+	
+9. In what area(s) do you want to personally improve / develop before our next check-in?
+	a. A continuation of what I have been doing:
+		1. Definitely become more accustomed to the technology we have
+		2. Improve ETL/python skills
+		3. Working with databricks/aws
+		4. Learning about source systems
+		
+10. Where can I help you?
+	a. Give more information on our team and organization and projects
+
+
+	
+	
+
+2/15/2023
+1. New Team Opportunity: 
+DOA 
+	• New project DOA joint team 
+	• EOA and D&AE 
+	• DATA ENGINEER ROLE
+	• IT partnership with EOA
+	• Digital connections -> The Cloud Partnership 
+	• Career progression - > going to a more senior role
+
+2. Question:
+	i. What Software/tools should we have on our PC?
+	ii. When should we expect to go 100% to the team? So we can tell our current teams?
+	iii. How long are the stand ups? I would recommend 30 min and no meeting on Fridays. -> 15 min
+	iv. TAMI: WED MEETING
+		Is this a permanent role or temp role based on project?
+		Is there any change in benefits or salary or is this just a learning opportunity?
+		-this is a new role that requires a 100% commitment with new job description
+		-I trained for a few years on the BA role I was in…
+
+	book of business - comes from vista
+	-mycigna.com data
+T12 Roja and anthony are working on other 3 data sources
+	-easiest one is digital data - > its in the cloud
+
+
+Cloud oriented 
+Grow resume, grow career
+
+Sonal/Angie - Cloud connections->assisting them with development of dashboard
+-diffficuly syncing datasources and data overall
+-manual extract vs cloud vs
+-try to develop in cloud perspective
+-part 1 : book of business - comes from vista
+-mycigna.com data
+-e-pro data
+-one source
+-access to care
+	-between these 5, we're looking for corresponding entries on the cloud
+-pull data into EDP enterprise data platform->implementatino to data bricks
+	-delta lake, data lake -> being more superior 
+T15 start
+	-push all data into delta lake
+	-S3 technology
+	-apache spark - introduced to couple of APIs (pythion, scala, java)
+Develop data bricks notebook (ETL jobs)
+
+Data layer-> reporting layer ->
+Can we use other technologies? Tableau? 
+
+
+
+First Stand up Meeting 2/14/23
+
+	• Agile process overview
+	• New team name
+	• Meet members of our team
+	• Times that we are going to meet 
+	• Chris - work on EOA- commitment to deliver high quality of data…identify shortfalls in our data
+
+We still have not had a technical overview--> That is next…
+
+1on1 with Anthony 2/17
+EOA Client Service Team:
+	
+	Salesforce data to EDW, which drives our tableau dashboards
+
+
+
+Questions:
+Is there any change in benefits or salary or is this just a learning opportunity?
+-this is a new role that requires a 100% commitment with new job description
+-I trained for a few years on the BA role I was in
+
+	i. When should we expect to go 100% to the team? So we can tell our current teams?
+	ii. How long are the stand ups? I would recommend 30 min and no meeting on Fridays. -> 15 min
+	iii. TAMI: WED MEETING
+
+3. Transition Move ups to David
+	i. Auto deployment global group
+	ii. Documentation
+
+4. Refresh ESP vs. Tableau
+	-Identify all refreshes and refresh schedules
+	-Document all the refresh processes we have
+	-Document all the ETL scripts coming from Salesforce data (Parent data)
+	-Document all the ETL scripts that go into our reporting
+	-Goes with the story: Environment Tableau Refresh Insight
+		-Gave her 
+	
+5. Tableau Process
+	Gave me ability to create a process improvement
+
+6. Tableau Work
+	i. Edit dashboards
+	ii. Calculations/Formulas
+	
+7. Tableau Deployment
+	Learned the ins and outs of publishing to production
+	Learned entire process from GIT Syncing our workbooks/datasources, running them in Jenkins
+	Diagnose any publishing issues
+
+8. DPA Adherence McGuire - (backfill/ETL/Backend)
+	• On the McGuire dashboard, DPA data was not pulling in for a set of users on the DPA EE detail tab.
+	• The users fell out due to a manager leaving and Mary taking over as their manager.  
+	• To fix this, we backfilled the data for the users in the DPL_DPA_ACTIVITY view.
+	• AND we also added a record to Manager Hierarchy for Mary McGuire in every position.
+	
+9. Load Holiday schedule (Backend/ETL/EDW)
+	i. Learned which tables need to be changed
+	ii. Once we get all the holidays for the following year, we make Inserts into the table for all 365 days 
+	and mark which days are holidays.
+	iii. EDW_BASE_O.CLNT_SVC_OS_BUSINESS_DAYS_VW;
+
+10. Part Time EE Remediation 11/28-PSL Urgent (Backend/ETL)
+	○ Basically deleted her time currently there and replaced it with the correct amounts for Part time
+
+		You will be adjusting the hours in the ADHERENCE_HIST table for this user for that time period. 
+		It is prescribed she worked 4 hours/day during that time so you will need to adjust her planned time by day/week/month accordingly to match that situation.
+		 It will probably be best to just delete and replace her planned time for that time period, but realize since it stretches from October to November we will probably need to
+		Redo all of her planned time from 10/1 onwards…
+		with the query keeping in mind that for that 3 week period to only assign 4 hours/day. 
+		
+		
+		
+		Script looked good so I deleted her planned time for October and November and reloaded it using your query.
+		 
+		Results will show in dashboard on Monday.
+	
+	
+11. DPA Dashboard issues:
+	
+12. AWS Training
+
+Other:
+
+13. ETL/Work - 
+	○ Diagnose issues we may have with data missing/incorrect
+	○ Check correct tables to see if we have data
+		○ Ex. Desiree Carpenter DPA Director
+14. Manager Hierarchy updates
+	○ Change manager 
+	○ Change users under a manager
+		§ Team alignment
+15. User Hierarchy updates
+	○ Change users name or manager
+	○ Make them non-active/active
+	○ Update effective dates
+	○ Changed user's category
+16. Create ETL mapping and Workflows
+
+
+
+
+
+Upcoming:
+1. Python
+
+
+1/19/23 Tami
+DPA stabilization today
+-house keeping
+-if we have 5 jobs on refresh schedule, we don't need it ---holding it back
+--NOTICED I HAVE BEEN PARTIPATING MORE!!!!
+
+17. Refresh ESP vs. Tableau
+-Identify all refreshes and refresh schedules
+-Document all the refresh processes we have
+-Document all the ETL scripts coming from Salesforce data (Parent data)
+-Document all the ETL scripts that go into our reporting
+
+
+	i. Work on filling in spreadsheet (extract refresh or ESP?) Adherence dashboard: 
+	Go to data source in SOBI Prod and Check Extract Refresh section
+		1. Completed first 50 records for extract refresh 
+		2. Ask Jerry if there is a list of all the dashboards we have ESP scripts for OR do we have to search for them one by one? 
+		3. Complete Front End ESP refresh jobs documentation
+			i. Ask Jerry which dashboard/datasource this refers too? Service recovery? For 3 out of 8 of them
+		4. ESP_Base_Level Jobs x 40
+			i. Noted and counted
+			ii. Work on Adding to document
+		5. ESP_Reporting_Level Jobs x 50
+			a. Noted and counted
+			b. Work on Adding to document
+
+18. Desiree Carpenter DPA Director
+		1. I noticed that she already exists in the Manager hierarchy so I'm guessing we don’t have to make changes here.
+		2. The users under also exist under Desiree in the User Hierarchy
+		3. Why do we need this story then?
+		4. JERRY CONFIRMED THAT WE HAVE BACKEND DATA
+		5. PRAKASH WILL add Director in the front end
+			i. Should we add same global group as white?
+
+19. Tableau Process
+	i. Split up into 3 parts
+		1. Process for Tableau Team Members
+		2. Process for Tableau Deployment Specialist
+		3. Process for Business Communication
+		4. Everything needs to be done before Tuesday so Monday afternoon we should have everything submitted.
+		Question: is there a place to put our shared files?
+		Meeting yesterday: Uma and Sujit can publish things very fast while we may take hours
+
+20. Support on 1/2
+	i. Check list of dashboards
+	ii. Check for any failures
+Create a list of collections such as account summary
+-middle market accounts summary (check if refreshed and working properly)
+-did it refresh? 
+Anything look out of ordinary for the data sources?
+-decided while I was gone---
+	-if email notification is 0, then salesforce issu
+Question on why we have to do support?
+
+21. Tableau Deployment - Tuesday x 10
+	i. Everything needs to be done before Tuesday so Monday afternoon we should have everything submitted.
+	ii. Mike and Jim helped me with some normal occurrences.  
+
+22. DPA Adherence McGuire SO 110222-100638 - backfill
+	• On the McGuire dashboard, DPA data was not pulling in for a set of users on the DPA EE detail tab.
+	• The users fell out due to a manager leaving and Mary taking over as their manager.  
+	• To fix this, we backfilled the data for the users in the DPL_DPA_ACTIVITY view.
+	• AND we also added a record to Manager Hierarchy for Mary McGuire in every position.
+	
+23. Load Holiday schedule
+	i. Once we get all the holidays for the following year, we make Inserts into the table for all 365 days and mark which days are holidays.
+	ii. EDW_BASE_O.CLNT_SVC_OS_BUSINESS_DAYS_VW;
+
+24. Environment Tableau Refresh Insight
+	i. When the data source fails we can create a outlook rule and can be forwarded to your email id.
+	
+	
+25. Part Time EE Remediation 11/28-PSL Urgent 
+	• I learned how to make changes to the planned hours
+	• Know what places to make the changes
+	•  Deleting and reloading hours in the ADHERENCE_HIST table for this user for that time period. 
+	10/1-10/23 -> normal hours PLANNED_HOURS_WEEK
+	10/24-11/13 -> reduced hours  PLANNED_HOURS_WEEK_PT_20
+	11/14-11/18 -> normal hours
+
+	i. Adjust filters so we are only pulling data for Claudia Aguilar for 10/1-11/19…
+
+	i. 10/24/22 – 11/13/22.
+		1. Is it 10/1 - 11/14 or 11/13?
+		2. Bottom of query
+		--       FILTER ON USER
+		        AND USR.NAME = ' Claudia Aguilar'
+		       AND USR.LAN_ID NOT IN ('M16781', 'C18905', 'B92813')
+		       AND MGR.SUPERVISOR_ID <> '0051U000005Xf7sQAC'
+		       AND USR.IS_ACTIVE = 'Y'
+		--       AND DATE_OF_REPORT >=
+		--           TRUNC ((SYSDATE + 1 - 7 * 1 - TO_CHAR (SYSDATE, 'D')))
+		--       Filter on date of report
+		    AND (TRUNC(DATE_OF_REPORT) >= TO_DATE('10/01/2022','MM/DD/YYYY')
+			AND TRUNC(DATE_OF_REPORT) <= TO_DATE('11/19/2022','MM/DD/YYYY'))
+		
+	ii. Line 88: Ensure PLANNED_HOURS_WEEK_PT_20 (line 88) is getting loaded into PLANNED_HOURS_WEEK for 10/24-11/18 otherwise just use PLANNED_HOURS_WEEK
+		1. Search for it 
+		2. Use LAN_ID?
+			a. Do we keep the not clause? 
+			CASE
+			           WHEN USR.LAN_ID ='C21162'
+			           AND  (TRUNC(DATE_OF_REPORT) >= TO_DATE('10/01/2022','MM/DD/YYYY')
+			  AND TRUNC(DATE_OF_REPORT) <= TO_DATE('10/23/2022','MM/DD/YYYY'))
+			  OR
+			  (TRUNC(DATE_OF_REPORT) >= TO_DATE('11/14/2022','MM/DD/YYYY')
+			  AND TRUNC(DATE_OF_REPORT) <= TO_DATE('11/18/2022','MM/DD/YYYY'))
+			
+			           THEN
+			               PLANNED_HOURS_WEEK
+			
+			             WHEN USR.LAN_ID ='C21162'
+			           AND  (TRUNC(DATE_OF_REPORT) >= TO_DATE('10/24/2022','MM/DD/YYYY')
+			  AND TRUNC(DATE_OF_REPORT) <= TO_DATE('11/13/2022','MM/DD/YYYY'))
+			
+			           THEN
+			               PLANNED_HOURS_WEEK_PT_20
+			           END
+			b. 
+		Your overall filtering is good.
+		 
+		For the PLANNED_HOURS_WEEK you are on the right track, here is how to think of it:
+		 
+		10/1-10/23 -> normal hours PLANNED_HOURS_WEEK
+		10/24-11/13 -> reduced hours  PLANNED_HOURS_WEEK_PT_20
+		11/14-11/18 -> normal hours
+		 
+		Use this to aid in creating your case statements keeping in mind PLANNED_HOURS_WEEK is normal hours and PLANNED_HOURS_WEEK_PT_20 is the reduced hours.
+		
+		Do we make separate when case for the dates or combine them into one?
+		
+	iii. Line 108: Ensure PLANNED_HOURS_MONTH_PT_20 is getting loaded into PLANNED_HOURS_MONTH for 10/24-11/18 otherwise just use PLANNED_HOURS_MONTH
+	
+		1. 
+	iv. Line 170: Ensure PLANNED_HOURS_DAY * 4 is getting loaded into PLANNED_HOURS_DAY for 10/24-11/18 otherwise load PLANNED_HOURS_DAY * 8
+	
+	 
+	Line 20: You can remove the existing CASE-WHEN logic for PLANNED_HOURS_DAY/PLANNED_HOURS_WEEK/PLANNED_HOURS_MONTH that already exists since we know we are only loading for Claudia…you will need to use CASE WHEN logic to achieve bullets 2-4 above so use what is there as an example for you to work off of.
+	 
+	Once this query is finished I will delete the existing planned time for her for October and November from Adherence Hist and then running this query will replace the numbers with what is expected.
+	
+	--       FILTER ON USER
+	        AND USR.NAME = ' Claudia Aguilar'
+	       AND USR.LAN_ID NOT IN ('M16781', 'C18905', 'B92813')
+	       AND MGR.SUPERVISOR_ID <> '0051U000005Xf7sQAC'
+	       AND USR.IS_ACTIVE = 'Y'
+	--       AND DATE_OF_REPORT >=
+	--           TRUNC ((SYSDATE + 1 - 7 * 1 - TO_CHAR (SYSDATE, 'D')))
+	--       Filter on date of report
+	    AND (TRUNC(PT.DATE_OF_REPORT) >= TO_DATE('10/01/2022','MM/DD/YYYY')
+		AND TRUNC(PT.DATE_OF_REPORT) <= TO_DATE('11/19/2022','MM/DD/YYYY'))
+	
+	
+	
+	
+
+
+
+
+5-27: 3 Components of Well-rounded full team member 
+--backend: get to the data
+--bi tool - be able to pull and consume the data
+--visualize the data
+
+run the SSIS package to get the backend data updated through May 2022 for the PG Analytics Dashboard
+will be publishing April 2022 PG results tomorrow 6/16 which is back to our normal process of posting on 
+or before the 18th of every month.  If my memory serves correct, the PG Analytics Dashboard backend ETL will run on the 19th and the Tableau dashboard will reflect these results then?
+We have SSIS package set to run after 18th (latest date for results to post).  
+We also have story to check the refresh for any missing guarantee descriptions in dashboard. 
+
+
+		
+		1. DPA Adherence McGuire SO 110222-100638 - backfill
+		2. Environment Tableau Refresh Insight
+		See if there is any dashboard to monitor refreshes and refresh failures
+			Check with Nilanjan for a list of dashboards and/or notifications on failures
+				Extracts Run with Server Filter Prod: Background Tasks for Extracts - Tableau Server (cigna.com)
+				How to create alert?
+				Create list of data sources:
+					When the data source fails we can create a outlook rule and can be forwarded to your email id.
+					On server level they have configured to send an email to few people when an extract fails .. we are just creating an outlook rule to get the mail forwarded to people who want to get alerts of their Data sources.
+					
+
+11/24-12/07
+Remove Indicator for EE on McGuire DPA dashboard
+Remove Indicators - DPA Time
+	18 inserts for Angela Stephani
+	Sent to jerry
+Part Time EE Remediation 11/28-PSL Urgent 
+10/24/22 – 11/13/22.
+
+From <https://jira2.sys.cigna.com/browse/SCSPATS-1513> 
+
+
+
+	You will be adjusting the hours in the ADHERENCE_HIST table for this user for that time period. 
+	It is prescribed she worked 4 hours/day during that time so you will need to adjust her planned time by day/week/month accordingly to match that situation.
+	 It will probably be best to just delete and replace her planned time for that time period, but realize since it stretches from October to November we will probably need to
+	Redo all of her planned time from 10/1 onwards…
+	with the query keeping in mind that for that 3 week period to only assign 4 hours/day. 
+	
+	
+	
+	Script looked good so I deleted her planned time for October and November and reloaded it using your query.
+	 
+	Results will show in dashboard on Monday.
+	
+	Basically deleted her time currently there and replaced it with the correct amounts for Part time
+	
+
+Tableau Deployment
+	Space issue - Ticket created
+	David's DPL workbooks
+	Simple solution: 
+	
+	• Everything needs to be done before Tuesday so Monday afternoon we should have evertyhing submitted.
+	
+Load 2023 Holiday schedule for Off-shore end Nov-Dec (Friday or Mon)
+	How to add date to insert quer
+	Send to Jerry
+	
+
+
+
+
+
+10/14
+26. Deployment - 
+	Issue: Missing project folders
+27. Salesforce Executive Inventory - 
+	Changes to dashboard - Account name
+28. PG Analytics Dashboard - Work closely on adding DHMO and appeals data
+29. EOA Templates 
+30. Tableau tips
+
+
+
+9/19
+We should have the acceptance criteria ready when the story is created?
+
+New Product manager should work with Sonal when they start, since sonal is important member
+
+Meetings should be shortened by scrummaster
+
+Scrum master is important because it's a daily task…
+
+31. Check GIT commit
+32. SC Lead Move up
+33. PG dashboard refresh
+34. UH/MH
+35. Python
+
+
+36. Work items
+Top 5 Request and Call Volume: Add Dental Data into Current backend view 
+	Backfill - Dental data for testing
+Dental Extract: data for July 2022 - due 8/8
+	Query prepared
+Adherence: Missing time away from work 
+	Working on with Jerry and workday
+Adherence: UH HEIARCHY: for Robert Esch remove before 7/4
+	Created csv
+	Send to jerry
+National Accounts Executive Summary:  Add text to info button on Claim -Medical box
+	Published to PVS
+PG dashboard refresh - maybe 8/14
+National Accounts Executive Summary: PG results for Exchange accounts are not showing in PG box
+	Please see attached screenshot from PG Analytics Dashboard.  These are the exchange accounts with PG results.  This data is not showing in PG box 
+
+
+
+4/27 Sync Tami
+	• Take PAA lodo from Sonal
+	• Jeaprodylabs.com
+	• Passed aws
+	• Pay close attention to prakash dental extract using aws
+
+Request Access
+	• Change ability in EDW folder in unix
+	• Tables in EDW for hierarchy
+
+
+	2/3 Meeting 
+	• Starting to put data marts into aws
+		○ Live feeds (no more refresh)
+	• Sobi moving from edw to aws
+	• 2nd qtr this year
+	• Tools: angular, thoughtspot
+	• We are gonna recommend for tableau
+	• Dash application - works really well with python
+	• May take until 2025 to implement it all
+	• Aws will eliminate refresh issues
+	• New technologies
+
+Visualization-front end
+Backend- data
+Prakash- does a little data science
+
+Think about your goals for this year (Discussion Item) Then consider: 
+37. 6/23 Quarter 2 apr-June end 
+38. Dream (“Someday, I wish I….”)
+	i. Can be self-sufficient in almost everything data or business in SOBI
+	ii. Non work related - travel to places/climb mountains, paid for it
+	
+39. Things from the last few months you enjoyed working on?
+	i. AWS
+	ii. Tableau - Gained knowledge from before and even more now
+	iii. Oracle/SQL - Got introduced to our databases and tables
+	iv. Testing dashboards (both visual and data, helped me understand the dashboards)
+	v. ETL Tasks and diagnose data issues 
+		1. A lot of research on packages 
+	
+40. Things you did not enjoy working on?
+	i. Production or Scorecard
+		1. Didn't feel like it was the best use of my time
+	ii. Testing - But need it
+
+41. What do we need to improve organizationally that you believe you can influence? How could you influence that? 
+	i. Organization and documentation
+	ii. Testing
+	iii. Clear requirements
+	iv. Switch to Jira should help improve current state of things
+
+Where are you going to focus your time?  What’s the big thi ng(s) to hit before next check-in? 
+	i. Continue to work on ETL 
+		1. SSIS and informatica
+	ii. Tableau (Data related, calculations)
+	
+42. Where can I help you?
+	a. Give more information on our team and organization
+
+
+43. In what area(s) do you want to personally improve / develop before our next check-in?
+	a. A continuation of what I have been doing:
+		1. Definitely become more accustomed to the technology we have
+		2. Improve ETL skills
+		3. Working with Informatica
+		
+44. Dream (“Someday, I wish I….”)  
+	• Continue taking on ETL Tasks for both informatica and ssis
+	• Continue learning about Tableau tasks
+
+Client planning 
+Client Platform PI 22.4 Planning Main Event- Review of High Level Work Roadmap 
+8/4/22 our performance analytics team
+
+
+Overview of SOBI
+6/20 Town Hall - Sonal
+-recording available on ipad 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+11/10 2021 QTR 4 check in 
+
+45.   How do I feel about 2021 and milestones?
+	a. Everything is going smoothly, spend most of my time on ETL, ORACLE, and some tableau
+46. What went well (success stories)
+	a. Learned a lot - ETL, ORACLE and some Tableau
+	b. Got a lot of access requests done - access to scripts to run edit and run ETL jobs
+	c. Oracle/SQL - Got more in depth on our databases and tables
+		i. Manager hierarchy updates
+		ii. Employee Hierarchy updates
+		
+	d. Testing dashboards (both visual and data, helped me understand the dashboards)
+	e. ETL Tasks and diagnose data issues 
+		i. Create mapping and workflow for E2E in Informatica
+	
+47. What did not go well (challenges)
+	a. Testing - can definitely improve upon it
+48. What do I need support with? (Manager)
+49. Or, what can I improve on to support you better or Drive more productive Conversations?  
+	a. You can give me some knowledge sessions/ trainings
+		i. Learn about ever north
+		ii. More information on SOBI that I may not know
+50. What am I going to concentrate on before the next Check in
+	a. Continue to take on ETL tasks
+	b. AWS training - Certification
+	c. SA Certification - Agile 
+51. Or what do I want to begin to concentrate/learn now or in 2022?  
+	- Continue taking on ETL Tasks for both Informatica and ssis
+	- Continue learning about Tableau tasks
+52. Other questions:
+	
+53. ------Tami Notes:
+54. How do I feel about 2021 and milestones?
+	1. Feel pretty good
+	2. Figured out what I want to be involved in like Oracle, ETL, Tableau and made good progress
+	3. Got to a point where to seek info and where to go to complete work.  Making switch from SQL to Oracle. 
+55. What went well (success stories)
+	1. Updated Goal Table for GSP SLA
+	2. Forgot a lot about Oracle and it was brought up again
+	3. Got access to tools in Informatica
+	4. Bringing more value to team and to Jerry
+	5. More stories for ETL and Oracle along with Tableau- versatility for full picture
+56. What did not go well (challenges)
+	1. Testing work when completed.  
+57. What do I need support with? (Manager)
+	1. Continue to see the bigger picture in a project, more visibility Road map and Return on Investment -Feature and Portfolio epic level for a project to get a holistic view.   
+58. Or, what can I improve on to support you better or Drive more productive Conversations?  
+	1. Project info I am working on and our transition to Evernorth.  Make sure Sharing all information
+	2. Give the Onboarding to the Project in Client Service.  
+59. What am I going to concentrate on before the next Check in
+	1. Testing work
+	2. Continue to work on ETL and Creation for mapping and Workflow
+	3. Improve on Oracle Knowledge.  Maybe even release Testing Procedures.  
+60. Or what do I want to begin to concentrate/learn now or in 2022?  
+	1. AWS- Missed one of the training sessions, need to push the test to this summer.  They will push out the exam to 2022.  Will sign up at that time and Tami will pay for it.  Get the certification to drive a high level project in SOBI.  
+	2. SA Certification, start Prerequisites.  Tami do some investigation.  
+	3. Future goal- Likes the agile environment and wants to continue to learn things to create more versatility on agile team and within SOBI.  
+		 
+
+8/24 2021 QTR 3 Check-in 
+
+61. How are you feeling today?   
+62. What do you continue to dream about? Is it still Oracle Developer?  Let's talk about next steps.  
+	- Continue taking on ETL Tasks for both informatica and ssis
+	- Continue learning about Tableau tasks
+63. Give me some idea what you are learning and how you are spending your time.  
+	a. Informatica / ORACLE assignments
+		i. Changing names of managers (Jerry)
+			1. Confirm/Update 2 Manager alignment changes (Implementation) 
+		ii. MANAGER Hierarchy updates
+		iii. PG testing - Monthly refresh (Prakash)
+		iv. Tableau ()
+What would you like to continue to explore/Develop before next check in? 
+	- Continue taking on ETL Tasks for both informatica and ssis
+	- Continue learning about Tableau tasks
+
+Other questions:
+Can I connect my printer? 
+
+-6/23 Jira Migration
+-worked on ssis with prakash and jerry
+-informatica details: 
+	Subrole: 
+
+
+Been working on some ETL 
+-Diagnosing some data issues and ETL
+-had a lot of working sessions 
+
+Direct deposit 
+
+BPMS                                 
+
+Salesforce - 
+
+64. Our team derives these extracts and dashboards 
+65. -working in development portion…
+
+Working on production - drives there databases 
+                       
+-what do I need a from 
+66. -bevioral model 
+
+67. -extracts, all 
+
+
+Meet with these immediate members
+-Prakash :
+-Jerry Windman : 
+-David Pol : 
+-Sonal :
+-Angie freeman : 
+-(Jim Hall) :
+
+Get to know each other:   
+
+-Monitor
+-learning issue
+-starting etl learning
+-started manual template 
+-PTOs
+
+--Update skillset in equilibrium
+
+BPMS training for october
+
+
+-Tableau changes 
+-manual template
+
+	- Set up the goals
+	- Jerry is a DBA perspective 
+	
+Degreed Path - Rally/agile
+
+	- What does it mean to be a good dev team member?
+
+
+Career Path:
+68. Tableau Developer
+	a. Progress Milestones
+		i. Mostly takes on Tableau Tasks.  
+		ii. Being able to see and diagnose SSIS/ETL will help in Tableau Development/issues.  
+		iii. Tableau Conference- Went to a lot of sessions and had it going in the background, very interesting.  
+			1. Ah Moment-Tableau Challenge competition.  Applications demo and step by step athletic event.  
+69. Oracle/SQL Developer
+	a. Sub-path Training: SSIS Packaging with Prakash
+	b. Progress Milestones
+		i. Access to items needed.  
+		ii. Ability to take some ETL Tasks and diagnose Data issues.  Share the duty. 
+70. Cognos Developer
+	a. Progress Milestones
+ 
+---Indexing in ETL
+	-performance dashboard
+
+Still owe:
+71. BPMS Training
+72. Workday Goal Setting in Prep for 2021
+73. Last Check-in Comments for finalization
+
+Needs: How am I doing as your manager, what additionally can I do
+· Pretty good so far.  Get responses quickly.  Access requests on time.  
+
+
+>SSIS packaging updates on PG dashboard
+	-diagnosed a data issue
+-Tableau work continued (more complex)
+
+-Oracle login issue resolved
+
+Takeaway: 
+Tableau
+Simple DBA / Oracle tasks
+
+ 1st quarter 
+	1. Dream (“Someday, I wish I….”)
+		i. Can be self-sufficient in almost everything data or business in SOBI
+		ii. Non work related - 
+		
+	2. Things from the last few months you enjoyed working on?
+		i. Tableau - Gained knowledge from before and even more now
+		ii. Oracle/SQL - Got introduced to our databases and tables
+		iii. Testing dashboards (both visual and data, helped me understand the dashboards)
+		iv. ETL Tasks and diagnose data issues 
+			1. A lot of research on packages 
+		
+	3. Things you did not enjoy working on?
+		i. Production or Scorecard
+			1. Didn't feel like it was the best use of my time
+	
+	4. What do we need to improve organizationally that you believe you can influence? How could you influence that? 
+		i. Organization and documentation
+		ii. Testing
+		iii. Switch to Jira should help improve current state of things
+		iv. Source Control
+	
+	Where are you going to focus your time?  What’s the big thing(s) to hit before next check-in? 
+		i. Continue to work on etl 
+			1. SSIS and informatica
+		ii. Tableau (Data related, calculations)
+		
+	5. In what area(s) do you want to personally improve / develop before our next check-in?
+		i. Definetly become more accustomed to the technology we have
+		ii. Improve etl skills
+		iii. Start working with informatica 
+		
+Put in our goals for check in:
+
+Workday>Talent & Performance > Start a check in >Connect for growth > Progress check in
+
+
+
+Questions: 
+Updated 12/1/2020
+-Headset
+-Printer and white boards?
+-Working on tableau
+
+Software: 
+
+5/27
+
+
